@@ -1,10 +1,10 @@
-package com.spring.bookManagementSystem.repository.service;
+package com.spring.management.service;
 
-import com.spring.bookManagementSystem.model.Books;
+import com.spring.management.model.Books;
+import com.spring.management.repository.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service
@@ -19,15 +19,16 @@ public class BookService {
         book.setAuthor("William");
         book.setBookName("Game of Throns");
         bookRepo.save(book);
+
     }
 
-    public void findByID()
+    public Books findByID()
     {
         int id=2;
-        System.out.println(bookRepo.findById(id));
+        Books list=bookRepo.findById(id).get();
+        return list;
     }
 
-    @PostConstruct
     public void savebooks()
     {
 
@@ -39,6 +40,7 @@ public class BookService {
         books.setBookName("Game of Rings");
 
         bookRepo.saveAll(List.of(book,books));
+        //System.out.println(abc);
     }
 
     public void DeleteByID()
@@ -47,10 +49,12 @@ public class BookService {
         bookRepo.deleteById(id);
     }
 
-    public void Count()
+    public long Count()
     {
         long count=bookRepo.count();
-        System.out.println(count);
+        return count;
     }
+
+
 
 }

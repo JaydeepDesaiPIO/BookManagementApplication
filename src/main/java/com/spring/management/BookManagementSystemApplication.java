@@ -1,10 +1,5 @@
-package com.spring.bookManagementSystem;
+package com.spring.management;
 
-import com.spring.bookManagementSystem.model.Books;
-import com.spring.bookManagementSystem.repository.service.BookRepo;
-import com.spring.bookManagementSystem.repository.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

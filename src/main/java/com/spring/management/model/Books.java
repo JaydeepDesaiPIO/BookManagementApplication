@@ -1,11 +1,10 @@
-package com.spring.bookManagementSystem.model;
+package com.spring.management.model;
 
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "Book_details")
 public class Books {
 
     @Id
@@ -40,6 +39,7 @@ public class Books {
         this.bookName = bookName;
     }
 
+
     @Override
     public String toString() {
         return "Books{" +
@@ -50,3 +50,6 @@ public class Books {
     }
 
 }
+
+
+
