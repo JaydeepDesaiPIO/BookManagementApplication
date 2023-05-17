@@ -8,53 +8,72 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookService {
+public class BookServiceImpl implements BookSerice {
 
     @Autowired
     private BookRepo bookRepo;
 
-    public void savebook()
+    public void saveBook()
     {
         Books book=new Books();
         book.setAuthor("William");
         book.setBookName("Game of Throns");
         bookRepo.save(book);
-
     }
 
-    public Books findByID()
+    //to find a book by id
+    public Books findById(int id)
     {
-        int id=2;
-        Books list=bookRepo.findById(id).get();
-        return list;
+        Books book=bookRepo.findById(id).get();
+        return book;
     }
 
-    public void savebooks()
+    public void saveBooks()
     {
-
         Books book=new Books();
         book.setAuthor("Rollings");
         book.setBookName("Harry Potter");
         Books books=new Books();
         books.setAuthor("MTX");
         books.setBookName("Game of Rings");
-
         bookRepo.saveAll(List.of(book,books));
         //System.out.println(abc);
     }
 
-    public void DeleteByID()
+    //to delete a book by id
+    public void DeleteByID(int id)
     {
-        int id=3;
         bookRepo.deleteById(id);
     }
 
+    //to count number of rows in table
     public long Count()
     {
         long count=bookRepo.count();
         return count;
     }
 
+    //to add new book to table
+    public String addBook(Books b)
+    {
+         bookRepo.save(b);
+         return "book added";
+    }
 
+    //get all books
+    public List<Books> getData()
+    {
+        return bookRepo.findAll();
+    }
+
+    //Update data in table
+    public void update(Books b,int id) {
+
+        Books book= bookRepo.findById(id).get();
+
+        book.setAuthor(b.getAuthor());
+        book.setBookName(b.getBookName());
+        bookRepo.save(book);
+    }
 
 }
