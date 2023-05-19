@@ -5,11 +5,13 @@ import com.spring.management.service.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/user")
 public class BookController {
 
     @Autowired
@@ -23,7 +25,7 @@ public class BookController {
     }
 
     @GetMapping("findById/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+   // @ResponseStatus(HttpStatus.NO_CONTENT)
     public Books findBookById ( @PathVariable("id") int id)
     {
             return bookService.findById(id);
@@ -36,21 +38,23 @@ public class BookController {
     }
 
     @PostMapping("add")
+ //   @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String save(@RequestBody Books book)
     {
         return bookService.addBook(book);
     }
 
     @GetMapping("getbooks")
+ //   @PreAuthorize("hasRole('ROLE_NORMAL') or hasRole('ROLE_ADMIN')")
     public List<Books> get()
     {
         return bookService.getData();
     }
 
     @PutMapping("update/{id}")
-    public void updateData(@RequestBody Books book,@PathVariable("id") int id)
+    public Books updateData(@RequestBody Books book,@PathVariable("id") int id)
     {
-         bookService.update(book,id);
+         return bookService.update(book,id);
     }
 
     @DeleteMapping("delete/{id}")
@@ -58,7 +62,7 @@ public class BookController {
     {
         try {
             bookService.DeleteByID(id);
-            return new ResponseEntity<>("Deleted Book" ,HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>("Book Deleted",HttpStatus.NO_CONTENT);
         }
 
         catch (Exception e) {

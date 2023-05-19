@@ -67,13 +67,14 @@ public class BookServiceImpl implements BookSerice {
     }
 
     //Update data in table
-    public void update(Books b,int id) {
+    public Books update(Books b,int id) {
 
         Books book= bookRepo.findById(id).get();
 
         book.setAuthor(b.getAuthor());
         book.setBookName(b.getBookName());
         bookRepo.save(book);
+        return book;
     }
 
 }
