@@ -13,6 +13,7 @@ public class BookServiceImpl implements BookSerice {
     @Autowired
     private BookRepo bookRepo;
 
+    @Override
     public void saveBook()
     {
         Books book=new Books();
@@ -22,12 +23,13 @@ public class BookServiceImpl implements BookSerice {
     }
 
     //to find a book by id
+    @Override
     public Books findById(int id)
     {
-        Books book=bookRepo.findById(id).get();
-        return book;
+        return bookRepo.findById(id).get();
     }
 
+    @Override
     public void saveBooks()
     {
         Books book=new Books();
@@ -37,23 +39,25 @@ public class BookServiceImpl implements BookSerice {
         books.setAuthor("MTX");
         books.setBookName("Game of Rings");
         bookRepo.saveAll(List.of(book,books));
-        //System.out.println(abc);
+
     }
 
     //to delete a book by id
+    @Override
     public void DeleteByID(int id)
     {
         bookRepo.deleteById(id);
     }
 
     //to count number of rows in table
+    @Override
     public long Count()
     {
-        long count=bookRepo.count();
-        return count;
+        return bookRepo.count();
     }
 
     //to add new book to table
+    @Override
     public String addBook(Books b)
     {
          bookRepo.save(b);
@@ -61,12 +65,14 @@ public class BookServiceImpl implements BookSerice {
     }
 
     //get all books
+    @Override
     public List<Books> getData()
     {
         return bookRepo.findAll();
     }
 
     //Update data in table
+    @Override
     public Books update(Books b,int id) {
 
         Books book= bookRepo.findById(id).get();

@@ -38,23 +38,23 @@ public class BookController {
     }
 
     @PostMapping("add")
- //   @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String save(@RequestBody Books book)
     {
         return bookService.addBook(book);
     }
 
     @GetMapping("getbooks")
- //   @PreAuthorize("hasRole('ROLE_NORMAL') or hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ROLE_NORMAL') or hasRole('ROLE_ADMIN')")
     public List<Books> get()
     {
         return bookService.getData();
     }
 
     @PutMapping("update/{id}")
-    public Books updateData(@RequestBody Books book,@PathVariable("id") int id)
+    public Books updateData(@RequestBody Books books,@PathVariable("id") int id)
     {
-         return bookService.update(book,id);
+         return bookService.update(books,id);
     }
 
     @DeleteMapping("delete/{id}")

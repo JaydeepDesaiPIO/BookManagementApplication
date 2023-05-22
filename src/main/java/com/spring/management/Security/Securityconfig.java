@@ -14,26 +14,28 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class Securityconfig extends WebSecurityConfigurerAdapter {
+
+    final String user="jaydeep";
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/user/**").hasRole("ADMIN")
+                //.antMatchers("/user/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
-//                .and()
-//                .formLogin();
+                .httpBasic()
+                .and()
+                .formLogin();
 
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser("jaydeep").password(this.passwordEncoder().encode("jaydeep")).roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password(this.passwordEncoder().encode("jaydeep")).roles("NORMAL");
+        auth.inMemoryAuthentication().withUser(user).password(this.passwordEncoder().encode(user)).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("user").password(this.passwordEncoder().encode(user)).roles("NORMAL");
     }
 
     @Bean
