@@ -2,7 +2,9 @@ package com.spring.management.service;
 
 import com.spring.management.model.Books;
 import com.spring.management.repository.BookRepo;
+import org.hibernate.FetchNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +14,10 @@ public class BookServiceImpl implements BookSerice {
 
     @Autowired
     private BookRepo bookRepo;
+
+    public BookServiceImpl(BookRepo bookRepo) {
+        this.bookRepo = bookRepo;
+    }
 
     @Override
     public void saveBook()
@@ -58,10 +64,11 @@ public class BookServiceImpl implements BookSerice {
 
     //to add new book to table
     @Override
-    public String addBook(Books b)
+    public Books addBook(Books b)
     {
          bookRepo.save(b);
-         return "book added";
+        // return "book added";
+        return b;
     }
 
     //get all books

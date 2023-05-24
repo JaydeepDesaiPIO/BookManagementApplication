@@ -14,7 +14,7 @@ public interface BookSerice {
 
     public long Count();
 
-    public String addBook(Books b);
+    public Books addBook(Books b);
 
     public List<Books> getData();
 

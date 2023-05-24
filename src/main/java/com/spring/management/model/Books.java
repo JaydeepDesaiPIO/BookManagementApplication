@@ -39,6 +39,13 @@ public class Books {
         this.bookName = bookName;
     }
 
+    public Books() {
+    }
+
+    public Books(String author, String bookName) {
+        this.author = author;
+        this.bookName = bookName;
+    }
 
     @Override
     public String toString() {

@@ -39,7 +39,7 @@ public class BookController {
 
     @PostMapping("add")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public String save(@RequestBody Books book)
+    public Books save(@RequestBody Books book)
     {
         return bookService.addBook(book);
     }
