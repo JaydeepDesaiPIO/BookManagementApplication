@@ -13,6 +13,7 @@ public class Books {
     private int id;
     @Column(name="Author")
     private String author;
+    @Column(name="book_name")
     private String bookName;
 
     public int getId() {

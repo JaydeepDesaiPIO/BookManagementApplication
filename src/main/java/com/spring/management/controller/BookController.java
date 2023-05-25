@@ -17,6 +17,10 @@ public class BookController {
     @Autowired
     private BookServiceImpl bookService;
 
+    public BookController(BookServiceImpl bookService) {
+        this.bookService = bookService;
+    }
+
     @RequestMapping("save")
     public void add()
     {
