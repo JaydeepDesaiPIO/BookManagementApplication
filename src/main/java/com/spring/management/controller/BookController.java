@@ -2,6 +2,8 @@ package com.spring.management.controller;
 
 import com.spring.management.model.Books;
 import com.spring.management.service.BookServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class BookController {
 
+    Logger logger=LoggerFactory.getLogger(BookController.class);
     @Autowired
     private BookServiceImpl bookService;
 
@@ -32,7 +35,9 @@ public class BookController {
    // @ResponseStatus(HttpStatus.NO_CONTENT)
     public Books findBookById ( @PathVariable("id") int id)
     {
-            return bookService.findById(id);
+        Books b=bookService.findById(id);
+        logger.info("Books Details = "+b);
+        return b;
     }
 
     @RequestMapping("count")

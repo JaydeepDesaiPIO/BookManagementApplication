@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true,securedEnabled = true,jsr250Enabled = true)
 public class Securityconfig extends WebSecurityConfigurerAdapter {
 
-    final String user="jaydeep";
+   // final String user="jaydeep";
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -34,8 +34,8 @@ public class Securityconfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().withUser(user).password(this.passwordEncoder().encode(user)).roles("ADMIN");
-        auth.inMemoryAuthentication().withUser("user").password(this.passwordEncoder().encode(user)).roles("NORMAL");
+        auth.inMemoryAuthentication().withUser("jaydeep").password(this.passwordEncoder().encode("jaydeep")).roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("user").password(this.passwordEncoder().encode("jaydeep")).roles("NORMAL");
     }
 
     @Bean

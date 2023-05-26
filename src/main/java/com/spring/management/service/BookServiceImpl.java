@@ -5,8 +5,11 @@ import com.spring.management.repository.BookRepo;
 import org.hibernate.FetchNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -73,9 +76,11 @@ public class BookServiceImpl implements BookSerice {
 
     //get all books
     @Override
+//    @Scheduled(fixedDelay = 1000)
     public List<Books> getData()
     {
-        return bookRepo.findAll();
+        List<Books> books=bookRepo.findAll();
+        return books;
     }
 
     //Update data in table
@@ -89,5 +94,23 @@ public class BookServiceImpl implements BookSerice {
         bookRepo.save(book);
         return book;
     }
+/*
+    @PostConstruct
+    @Scheduled(initialDelay = 10000,fixedDelay = 5000)
+    public void Schedular() throws InterruptedException {
+        Thread.sleep(1000);
+        System.out.println("Testing Schedular "+(new Date()));
+    }
+
+ */
+
+//    @PostConstruct
+//    //sec min hour dayOfMonth month dayOfWeek
+//    @Scheduled(cron = "*/2 * * * * *")
+//    public void SchedularCorn()
+//    {
+//        System.out.println("Testing App "+(new Date()));
+//    }
+
 
 }
